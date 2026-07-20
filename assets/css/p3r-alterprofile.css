@@ -1,0 +1,997 @@
+/* ======================================================
+   P3R ALTER PROFILE CSS
+   Dark Hour Green / Persona 3 Reload inspired status screen
+   Compatible with p3r-alterprofile.js
+   ====================================================== */
+
+body.p3r-alter-page{
+  --darkhour-green:#39ff14;
+  --darkhour-green2:#9cff57;
+  --darkhour-green3:#16b83e;
+  --darkhour-yellow:#dfff35;
+  --darkhour-dark:#020b05;
+  --darkhour-dark2:#041507;
+  --darkhour-black:#010402;
+
+  --alter-red:#39ff14;
+  --alter-red2:#9cff57;
+  --alter-dark:#020b05;
+  --alter-dark2:#041507;
+  --alter-ink:rgba(255,255,255,.94);
+  --alter-muted:rgba(255,255,255,.68);
+
+  background:
+    radial-gradient(820px 500px at 78% 12%, rgba(57,255,20,.22), transparent 62%),
+    radial-gradient(820px 560px at 12% 30%, rgba(156,255,87,.16), transparent 68%),
+    linear-gradient(180deg, #06240b 0%, #020f06 42%, #000603 100%);
+}
+
+body.p3r-alter-page::before{
+  content:"DARK HOUR";
+  color:rgba(57,255,20,.08);
+}
+
+body.p3r-alter-page::after{
+  background:
+    linear-gradient(115deg, transparent 0 16%, rgba(255,255,255,.58) 16% 25%, transparent 25% 100%),
+    linear-gradient(115deg, transparent 0 43%, rgba(57,255,20,.20) 43% 46%, transparent 46% 100%),
+    linear-gradient(115deg, transparent 0 56%, rgba(0,0,0,.34) 56% 60%, transparent 60% 100%);
+  mix-blend-mode:screen;
+  opacity:.46;
+}
+
+body.p3r-alter-page .p3r-grid{
+  background:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  opacity:.10;
+}
+
+body.p3r-alter-page .p3r-diagonals{
+  background:
+    linear-gradient(115deg, transparent 0 24%, rgba(255,255,255,.44) 24% 27%, transparent 27% 100%),
+    linear-gradient(115deg, transparent 0 36%, rgba(57,255,20,.38) 36% 40%, transparent 40% 100%),
+    linear-gradient(115deg, transparent 0 52%, rgba(156,255,87,.24) 52% 56%, transparent 56% 100%),
+    linear-gradient(115deg, transparent 0 68%, rgba(0,80,24,.42) 68% 72%, transparent 72% 100%);
+  opacity:.72;
+}
+
+body.p3r-alter-page .p3r-vignette{
+  background:
+    radial-gradient(circle at 55% 22%, transparent 0 30%, rgba(0,0,0,.58) 72%),
+    linear-gradient(90deg, rgba(0,0,0,.55), transparent 34%, transparent 68%, rgba(0,0,0,.76));
+}
+
+/* ======================================================
+   BUTTONS
+   ====================================================== */
+
+body.p3r-alter-page .p3r-btn{
+  color:#001405;
+  background:
+    linear-gradient(110deg, #050805 0 18%, transparent 18% 100%),
+    var(--darkhour-green);
+  border-color:rgba(255,255,255,.86);
+  box-shadow:8px 8px 0 rgba(0,0,0,.48);
+}
+
+body.p3r-alter-page .p3r-btn:hover{
+  color:#001405;
+  background:
+    linear-gradient(110deg, #050805 0 28%, rgba(255,255,255,.26) 28% 42%, transparent 42% 100%),
+    var(--darkhour-green2);
+}
+
+body.p3r-alter-page .p3r-btn-ghost{
+  color:rgba(255,255,255,.94);
+  background:
+    linear-gradient(110deg, var(--darkhour-green) 0 18%, transparent 18% 100%),
+    #020603;
+  border-color:rgba(255,255,255,.72);
+}
+
+body.p3r-alter-page .p3r-btn-ghost:hover{
+  color:rgba(255,255,255,.96);
+  background:
+    linear-gradient(110deg, var(--darkhour-green) 0 28%, rgba(255,255,255,.16) 28% 42%, transparent 42% 100%),
+    #020603;
+}
+
+/* ======================================================
+   TOP COMMAND
+   ====================================================== */
+
+.p3r-alter-top{
+  padding-top:24px;
+  position:relative;
+  z-index:3;
+}
+
+.p3r-alter-command{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:14px;
+  align-items:center;
+}
+
+.p3r-alter-command-title{
+  color:rgba(255,255,255,.96);
+  font-family:var(--font-head);
+  font-weight:1000;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  text-shadow:
+    4px 4px 0 rgba(0,0,0,.90),
+    7px 7px 0 rgba(57,255,20,.35);
+  transform:skewX(-10deg);
+}
+
+.p3r-alter-command-title span{
+  display:block;
+  font-size:clamp(2.2rem, 4.5vw, 4.6rem);
+  line-height:.72;
+}
+
+.p3r-alter-command-title small{
+  display:block;
+  margin-top:6px;
+  color:var(--darkhour-green2);
+  font-size:.9rem;
+  letter-spacing:3px;
+}
+
+/* ======================================================
+   STAGE
+   ====================================================== */
+
+.p3r-alter-stage{
+  position:relative;
+  padding-top:34px;
+  padding-bottom:44px;
+}
+
+.p3r-alter-bg-word{
+  position:absolute;
+  right:-4vw;
+  top:2vh;
+  z-index:0;
+  font-family:var(--font-head);
+  font-size:clamp(4.8rem, 15vw, 15rem);
+  font-weight:1000;
+  line-height:.75;
+  letter-spacing:-.06em;
+  color:rgba(57,255,20,.13);
+  transform:rotate(-9deg);
+  pointer-events:none;
+}
+
+.p3r-alter-stage > .row{
+  position:relative;
+  z-index:1;
+}
+
+/* ======================================================
+   LEFT CARD
+   ====================================================== */
+
+.p3r-alter-card{
+  position:relative;
+  overflow:hidden;
+  height:100%;
+  min-height:100%;
+  padding:20px;
+  color:rgba(255,255,255,.94);
+  background:rgba(0,0,0,.82);
+  border:3px solid rgba(255,255,255,.18);
+  box-shadow:16px 16px 0 rgba(0,0,0,.42);
+}
+
+.p3r-alter-photo-card{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+}
+
+.p3r-alter-card::before{
+  content:"";
+  position:absolute;
+  left:-70px;
+  top:-70px;
+  width:190px;
+  height:190px;
+  background:var(--darkhour-green);
+  transform:rotate(18deg);
+  box-shadow:0 0 42px rgba(57,255,20,.24);
+}
+
+.p3r-alter-card::after{
+  content:"ALTER";
+  position:absolute;
+  right:-18px;
+  bottom:18px;
+  font-family:var(--font-head);
+  font-size:4.8rem;
+  font-weight:1000;
+  line-height:.8;
+  color:rgba(57,255,20,.12);
+  transform:rotate(-90deg);
+}
+
+.p3r-alter-card > *{
+  position:relative;
+  z-index:1;
+}
+
+.p3r-alter-card-label{
+  display:inline-flex;
+  width:max-content;
+  padding:.45rem .72rem;
+  color:#001405;
+  background:var(--darkhour-green);
+  border:3px solid rgba(255,255,255,.86);
+  box-shadow:7px 7px 0 rgba(0,0,0,.48);
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:2px;
+  transform:skewX(-12deg);
+}
+
+/* ======================================================
+   PHOTO
+   ====================================================== */
+
+.p3r-photo-frame{
+  width:100%;
+  max-width:285px;
+  aspect-ratio:1 / 1.12;
+  margin:20px auto 0;
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  border:4px solid #090006;
+  box-shadow:
+    14px 14px 0 rgba(57,255,20,.58),
+    -8px -8px 0 rgba(255,255,255,.18),
+    0 20px 42px rgba(0,0,0,.46);
+  transform:skewX(-10deg) rotate(-3deg);
+}
+
+.p3r-photo-frame::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:3px solid rgba(0,0,0,.18);
+  z-index:2;
+  pointer-events:none;
+}
+
+.p3r-photo{
+  position:absolute;
+  inset:14px;
+  width:calc(100% - 28px);
+  height:calc(100% - 28px);
+  object-fit:cover;
+  transform:skewX(10deg) scale(1.06);
+  filter:contrast(1.12) saturate(1.02);
+}
+
+.p3r-photo-wipe{
+  position:absolute;
+  inset:-45%;
+  z-index:3;
+  background:linear-gradient(
+    115deg,
+    transparent 0 44%,
+    rgba(57,255,20,.38) 44% 48%,
+    rgba(255,255,255,.18) 48% 50%,
+    transparent 50% 100%
+  );
+  transform:translateX(-70%);
+  animation:alterPhotoWipe 2.4s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes alterPhotoWipe{
+  0%{ transform:translateX(-70%); opacity:0; }
+  28%{ opacity:.90; }
+  100%{ transform:translateX(70%); opacity:0; }
+}
+
+/* ======================================================
+   MINI INFO
+   ====================================================== */
+
+.p3r-alter-mini{
+  margin-top:14px;
+  padding:12px 14px;
+  background:rgba(0,0,0,.58);
+  border:2px solid rgba(255,255,255,.16);
+  transform:skewX(-8deg);
+}
+
+.p3r-mini-label{
+  color:var(--darkhour-green2);
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:3px;
+  font-size:.95rem;
+}
+
+.p3r-mini-value{
+  margin-top:3px;
+  color:rgba(255,255,255,.94);
+  font-weight:800;
+}
+
+/* ======================================================
+   ALTER BOARD
+   ====================================================== */
+
+.p3r-alter-board{
+  min-height:100%;
+  position:relative;
+  overflow:hidden;
+  padding:30px;
+  color:rgba(255,255,255,.95);
+  background:rgba(0,0,0,.78);
+  border:3px solid rgba(255,255,255,.18);
+  box-shadow:18px 18px 0 rgba(0,0,0,.42);
+}
+
+.p3r-alter-board::before{
+  content:"";
+  position:absolute;
+  left:-90px;
+  top:-90px;
+  width:250px;
+  height:250px;
+  background:var(--darkhour-green);
+  transform:rotate(18deg);
+  opacity:.20;
+}
+
+.p3r-alter-board::after{
+  content:"DARK HOUR";
+  position:absolute;
+  right:-20px;
+  top:42px;
+  color:rgba(57,255,20,.13);
+  font-family:var(--font-head);
+  font-size:clamp(3rem, 8vw, 7rem);
+  font-weight:1000;
+  line-height:.75;
+  transform:rotate(-8deg);
+  pointer-events:none;
+}
+
+.p3r-alter-board > *{
+  position:relative;
+  z-index:1;
+}
+
+.p3r-alter-header{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:18px;
+  align-items:start;
+}
+
+.p3r-alter-kicker{
+  color:var(--darkhour-green2);
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+.p3r-alter-name{
+  margin:10px 0 0;
+  color:rgba(255,255,255,.98);
+  font-family:var(--font-head);
+  font-size:clamp(3.5rem, 8vw, 7.4rem);
+  font-weight:1000;
+  letter-spacing:-.05em;
+  line-height:.72;
+  text-transform:uppercase;
+  text-shadow:
+    6px 6px 0 rgba(0,0,0,.95),
+    10px 10px 0 rgba(57,255,20,.34);
+  transform:skewX(-8deg);
+}
+
+.p3r-alter-rank{
+  min-width:112px;
+  padding:13px 14px;
+  color:#001405;
+  background:var(--darkhour-green);
+  border:3px solid rgba(255,255,255,.86);
+  box-shadow:8px 8px 0 rgba(0,0,0,.52);
+  text-align:center;
+  transform:skewX(-12deg) rotate(2deg);
+}
+
+.p3r-alter-rank span{
+  display:block;
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:2px;
+  line-height:1;
+}
+
+.p3r-alter-rank b{
+  display:block;
+  margin-top:4px;
+  color:#071206;
+  font-family:var(--font-head);
+  font-size:2rem;
+  line-height:.9;
+  text-shadow:none;
+}
+
+/* ======================================================
+   ALTER LINES
+   ====================================================== */
+
+.p3r-alter-lines{
+  margin-top:28px;
+  display:grid;
+  gap:10px;
+}
+
+.p3r-alter-line{
+  display:grid;
+  grid-template-columns:210px minmax(0,1fr);
+  align-items:center;
+  min-height:54px;
+  position:relative;
+  overflow:hidden;
+  color:rgba(255,255,255,.94);
+  background:#070b07;
+  border:3px solid rgba(255,255,255,.16);
+  box-shadow:8px 8px 0 rgba(0,0,0,.30);
+  transform:skewX(-10deg);
+}
+
+.p3r-alter-line::before{
+  content:"";
+  position:absolute;
+  left:-34px;
+  top:0;
+  bottom:0;
+  width:92px;
+  background:var(--darkhour-green);
+  transform:skewX(-18deg);
+}
+
+.p3r-alter-line.is-white{
+  color:#001405;
+  background:rgba(255,255,255,.94);
+  border-color:#001405;
+}
+
+.p3r-alter-line.is-green{
+  background:linear-gradient(90deg, var(--darkhour-green), #070b07 62%);
+}
+
+.p3r-alter-line span,
+.p3r-alter-line b{
+  position:relative;
+  z-index:1;
+  transform:skewX(10deg);
+}
+
+.p3r-alter-line span{
+  padding-left:72px;
+  color:var(--darkhour-green2);
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:3px;
+}
+
+.p3r-alter-line.is-white span{
+  color:#0c7a20;
+  text-shadow:none;
+}
+
+.p3r-alter-line b{
+  padding:0 18px;
+  font-family:var(--font-head);
+  font-size:1.45rem;
+  font-weight:1000;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* ======================================================
+   STAT GRID
+   ====================================================== */
+
+.p3r-alter-stat-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:12px;
+}
+
+.p3r-alter-stat{
+  min-height:96px;
+  padding:14px;
+  color:#001405;
+  background:rgba(255,255,255,.94);
+  border:3px solid #001405;
+  box-shadow:8px 8px 0 rgba(0,0,0,.42);
+  transform:skewX(-10deg);
+  position:relative;
+  overflow:hidden;
+}
+
+.p3r-alter-stat::before{
+  content:"";
+  position:absolute;
+  right:-24px;
+  bottom:-24px;
+  width:88px;
+  height:88px;
+  background:var(--darkhour-green);
+  transform:rotate(18deg);
+}
+
+.p3r-alter-stat span,
+.p3r-alter-stat b{
+  position:relative;
+  z-index:1;
+  display:block;
+  transform:skewX(10deg);
+}
+
+.p3r-alter-stat span{
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:2px;
+  line-height:1;
+}
+
+.p3r-alter-stat b{
+  margin-top:10px;
+  color:#109b28;
+  font-family:var(--font-head);
+  font-size:2.2rem;
+  font-weight:1000;
+  line-height:.8;
+}
+
+/* ======================================================
+   DESCRIPTION
+   ====================================================== */
+
+.p3r-alter-subtitle{
+  color:var(--darkhour-green2);
+  font-size:1.05rem;
+  line-height:1.7;
+  padding:14px 18px;
+  background:rgba(0,0,0,.52);
+  border-left:8px solid var(--darkhour-green);
+  transform:skewX(-8deg);
+}
+
+.p3r-alter-section-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--darkhour-green2);
+  font-family:var(--font-head);
+  font-size:1.35rem;
+  font-weight:1000;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:3px 3px 0 rgba(0,0,0,.86);
+}
+
+.p3r-alter-section-title.small-title{
+  font-size:1.05rem;
+  letter-spacing:3px;
+}
+
+.p3r-alter-section-title span{
+  width:30px;
+  height:12px;
+  background:var(--darkhour-green);
+  clip-path:polygon(0 0, 100% 0, 72% 100%, 0 100%);
+}
+
+.p3r-desc{
+  margin-top:12px;
+  padding:18px 20px;
+  color:rgba(255,255,255,.84);
+  background:rgba(0,0,0,.52);
+  border:3px solid rgba(255,255,255,.14);
+  line-height:1.75;
+}
+
+/* ======================================================
+   DETAIL PANELS
+   ====================================================== */
+
+.p3r-alter-details{
+  position:relative;
+  z-index:2;
+}
+
+.p3r-alter-page .p3r-panel{
+  margin-bottom:22px;
+  padding:22px;
+  background:rgba(0,0,0,.78);
+  border:3px solid rgba(255,255,255,.18);
+  box-shadow:14px 14px 0 rgba(0,0,0,.38);
+}
+
+.p3r-alter-page .p3r-panel::before{
+  width:170px;
+  height:170px;
+  left:-64px;
+  top:-64px;
+  background:var(--darkhour-green);
+}
+
+.p3r-alter-page .p3r-panel::after{
+  background:rgba(57,255,20,.20);
+  opacity:.65;
+}
+
+.p3r-alter-page .p3r-panel-title{
+  font-size:1.38rem;
+}
+
+.p3r-alter-page .p3r-panel-title-dot{
+  width:24px;
+  height:14px;
+  border-radius:0;
+  background:var(--darkhour-green);
+  clip-path:polygon(0 0, 100% 0, 72% 100%, 0 100%);
+}
+
+/* ======================================================
+   SKILLS
+   ====================================================== */
+
+.p3r-skill{
+  padding:14px;
+  background:rgba(0,0,0,.58);
+  border:3px solid rgba(255,255,255,.16);
+  box-shadow:7px 7px 0 rgba(0,0,0,.28);
+  transform:skewX(-8deg);
+}
+
+.p3r-skill-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:rgba(255,255,255,.94);
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transform:skewX(8deg);
+}
+
+.p3r-bar{
+  margin-top:12px;
+  height:18px;
+  background:rgba(255,255,255,.10);
+  border:2px solid rgba(255,255,255,.16);
+  overflow:hidden;
+}
+
+.p3r-bar > span{
+  display:block;
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--darkhour-green2), var(--darkhour-green));
+  box-shadow:0 0 18px rgba(57,255,20,.32);
+  transition:width .85s ease;
+}
+
+/* ======================================================
+   TAGS
+   ====================================================== */
+
+.p3r-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.p3r-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:.46rem .66rem;
+  color:#001405;
+  background:rgba(255,255,255,.94);
+  border:2px solid #001405;
+  box-shadow:5px 5px 0 rgba(0,0,0,.34);
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transform:skewX(-10deg);
+}
+
+.p3r-tag::before{
+  content:"";
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--darkhour-green);
+}
+
+/* ======================================================
+   VIDEO / GALLERY
+   ====================================================== */
+
+.p3r-video{
+  position:relative;
+  width:100%;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  background:rgba(0,0,0,.70);
+  border:3px solid rgba(255,255,255,.18);
+  box-shadow:10px 10px 0 rgba(0,0,0,.30);
+}
+
+.p3r-video iframe,
+.p3r-video video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  object-fit:cover;
+}
+
+.p3r-gallery{
+  position:relative;
+}
+
+.p3r-g-viewport{
+  overflow:hidden;
+  aspect-ratio:16 / 9;
+  background:rgba(0,0,0,.70);
+  border:3px solid rgba(255,255,255,.18);
+  box-shadow:10px 10px 0 rgba(0,0,0,.30);
+}
+
+.p3r-g-track{
+  display:flex;
+  height:100%;
+  width:100%;
+  transform:translateX(0);
+  transition:transform .35s ease;
+}
+
+.p3r-g-slide{
+  flex:0 0 100%;
+  height:100%;
+}
+
+.p3r-g-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.p3r-g-btn{
+  position:absolute;
+  top:50%;
+  z-index:3;
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  color:#001405;
+  background:var(--darkhour-green);
+  border:3px solid rgba(255,255,255,.86);
+  box-shadow:6px 6px 0 rgba(0,0,0,.42);
+  font-family:var(--font-head);
+  font-size:2rem;
+  font-weight:1000;
+  line-height:1;
+  cursor:pointer;
+  transform:translateY(-50%) skewX(-12deg);
+}
+
+.p3r-g-btn:hover{
+  background:var(--darkhour-yellow);
+  color:#001405;
+}
+
+.p3r-g-prev{
+  left:10px;
+}
+
+.p3r-g-next{
+  right:10px;
+}
+
+.p3r-g-dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:12px;
+}
+
+.p3r-g-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.82);
+  background:rgba(255,255,255,.12);
+  cursor:pointer;
+}
+
+.p3r-g-dot.is-on{
+  background:var(--darkhour-green);
+}
+
+.p3r-g-cap{
+  margin-top:10px;
+  color:rgba(255,255,255,.70);
+  text-align:center;
+}
+
+/* ======================================================
+   GLITCH
+   ====================================================== */
+
+.p3r-glitch{
+  position:relative;
+  display:inline-block;
+}
+
+.p3r-glitch::before,
+.p3r-glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0;
+}
+
+body.p3r-alter-page.is-glitch .p3r-glitch::before{
+  opacity:.86;
+  transform:translate(-2px, 0);
+  color:var(--darkhour-green2);
+  clip-path:inset(0 0 54% 0);
+}
+
+body.p3r-alter-page.is-glitch .p3r-glitch::after{
+  opacity:.76;
+  transform:translate(2px, 0);
+  color:#ffffff;
+  clip-path:inset(46% 0 0 0);
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 1200px){
+  .p3r-alter-line{
+    grid-template-columns:185px minmax(0,1fr);
+  }
+
+  .p3r-alter-line span{
+    padding-left:62px;
+    letter-spacing:2px;
+  }
+
+  .p3r-photo-frame{
+    max-width:265px;
+  }
+}
+
+@media (max-width: 992px){
+  .p3r-alter-command{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .p3r-alter-command > .d-flex{
+    justify-content:center !important;
+  }
+
+  .p3r-alter-header{
+    grid-template-columns:1fr;
+  }
+
+  .p3r-alter-rank{
+    width:max-content;
+  }
+
+  .p3r-alter-line{
+    grid-template-columns:185px minmax(0,1fr);
+  }
+
+  .p3r-alter-stat-grid{
+    grid-template-columns:1fr;
+  }
+
+  .p3r-photo-frame{
+    max-width:285px;
+  }
+}
+
+@media (max-width: 576px){
+  .p3r-alter-stage{
+    padding-top:20px;
+  }
+
+  .p3r-alter-bg-word{
+    display:none;
+  }
+
+  .p3r-alter-card,
+  .p3r-alter-board,
+  .p3r-alter-page .p3r-panel{
+    padding:18px;
+  }
+
+  .p3r-alter-name{
+    font-size:clamp(3rem, 18vw, 4.4rem);
+  }
+
+  .p3r-alter-line{
+    grid-template-columns:1fr;
+    gap:2px;
+    padding:10px 14px;
+  }
+
+  .p3r-alter-line::before{
+    width:70px;
+    left:-28px;
+  }
+
+  .p3r-alter-line span{
+    padding-left:46px;
+  }
+
+  .p3r-alter-line b{
+    padding-left:0;
+    font-size:1.25rem;
+  }
+
+  .p3r-alter-subtitle{
+    transform:none;
+  }
+
+  .p3r-photo-frame{
+    max-width:245px;
+  }
+}
+
+/* ======================================================
+   FINAL BUTTON TEXT FIX
+   - Copy Link text putih agar tidak hitam di Dark Hour Green
+   - Sengaja pakai beberapa selector karena versi body class kamu
+     pernah berbeda antara p3r-alter-page dan p3r-alter
+   ====================================================== */
+
+body.p3r-alter-page #copyLinkBtn,
+body.p3r.p3r-alter #copyLinkBtn,
+.p3r-alter #copyLinkBtn,
+#copyLinkBtn{
+  color:#ffffff !important;
+  text-shadow:2px 2px 0 rgba(0,0,0,.88) !important;
+}
+
+body.p3r-alter-page #copyLinkBtn:hover,
+body.p3r-alter-page #copyLinkBtn:focus,
+body.p3r.p3r-alter #copyLinkBtn:hover,
+body.p3r.p3r-alter #copyLinkBtn:focus,
+.p3r-alter #copyLinkBtn:hover,
+.p3r-alter #copyLinkBtn:focus,
+#copyLinkBtn:hover,
+#copyLinkBtn:focus{
+  color:#ffffff !important;
+  text-shadow:2px 2px 0 rgba(0,0,0,.92) !important;
+}

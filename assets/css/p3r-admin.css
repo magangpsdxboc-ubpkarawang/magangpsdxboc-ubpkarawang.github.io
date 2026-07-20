@@ -1,0 +1,631 @@
+/* ======================================================
+   P3R ADMIN CSS
+   Persona 3 Reload inspired admin command center
+   FIXED:
+   - Menu link red slice tidak menutup tulisan
+   - Admin navigation lebih aman tanpa pseudo overlay di atas text
+   ====================================================== */
+
+body.p3r-admin-page{
+  min-height:100vh;
+  background:
+    radial-gradient(760px 480px at 82% 12%, rgba(25,231,255,.20), transparent 62%),
+    radial-gradient(900px 560px at 12% 36%, rgba(0,56,255,.26), transparent 68%),
+    linear-gradient(180deg, #07bce8 0%, #075bc9 35%, #001b95 72%, #020725 100%);
+}
+
+body.p3r-admin-page::before{
+  content:"ADMIN PANEL";
+  position:fixed;
+  right:-4vw;
+  bottom:5vh;
+  z-index:0;
+  color:rgba(255,255,255,.065);
+  font-family:var(--font-head);
+  font-size:clamp(4rem, 13vw, 14rem);
+  font-weight:1000;
+  line-height:.72;
+  letter-spacing:-.04em;
+  transform:rotate(-10deg);
+  pointer-events:none;
+  white-space:nowrap;
+}
+
+body.p3r-admin-page::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(115deg, transparent 0 18%, rgba(255,255,255,.72) 18% 24%, transparent 24% 100%),
+    linear-gradient(115deg, transparent 0 46%, rgba(25,231,255,.18) 46% 50%, transparent 50% 100%),
+    linear-gradient(115deg, transparent 0 62%, rgba(0,0,0,.24) 62% 66%, transparent 66% 100%);
+  opacity:.48;
+  mix-blend-mode:screen;
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+
+.p3r-admin-header{
+  position:relative;
+  z-index:10;
+  padding:22px 0 12px;
+}
+
+.p3r-admin-nav{
+  display:grid;
+  grid-template-columns:auto auto;
+  align-items:start;
+  gap:14px;
+}
+
+.p3r-admin-brand{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  width:max-content;
+  color:var(--p3r-black);
+  background:var(--p3r-white);
+  border:3px solid var(--p3r-black);
+  box-shadow:10px 10px 0 rgba(0,0,0,.38);
+  text-decoration:none;
+  padding:.72rem 1.18rem .72rem 1rem;
+  transform:skewX(-13deg);
+  position:relative;
+  overflow:hidden;
+}
+
+.p3r-admin-brand:hover{
+  color:var(--p3r-black);
+  filter:brightness(1.03);
+}
+
+.p3r-admin-brand::before{
+  content:"";
+  position:absolute;
+  left:-10px;
+  top:0;
+  bottom:0;
+  width:22px;
+  background:var(--p3r-red);
+  z-index:0;
+}
+
+.p3r-admin-brand::after{
+  content:"";
+  position:absolute;
+  right:-38px;
+  top:-18px;
+  width:92px;
+  height:92px;
+  background:var(--p3r-cyan);
+  transform:rotate(24deg);
+  opacity:.82;
+  z-index:0;
+}
+
+.p3r-admin-brand > *{
+  position:relative;
+  z-index:1;
+  transform:skewX(13deg);
+}
+
+.p3r-admin-brand-mark{
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  background:var(--p3r-blue);
+  box-shadow:0 0 0 5px rgba(0,56,255,.14);
+}
+
+.p3r-admin-brand-text{
+  display:grid;
+  line-height:1;
+}
+
+.p3r-admin-brand-text strong{
+  font-family:var(--font-head);
+  font-size:1.25rem;
+  font-weight:1000;
+  letter-spacing:3px;
+}
+
+.p3r-admin-brand-text small{
+  margin-top:4px;
+  color:rgba(0,0,0,.62);
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* ======================================================
+   MOBILE TOGGLE
+   ====================================================== */
+
+.p3r-admin-toggle{
+  justify-self:end;
+  min-height:46px;
+  padding:.64rem 1rem;
+  color:var(--p3r-white);
+  background:
+    linear-gradient(110deg, var(--p3r-red) 0 18%, transparent 18% 100%),
+    var(--p3r-black);
+  border:3px solid var(--p3r-white);
+  box-shadow:8px 8px 0 rgba(0,0,0,.34);
+  font-family:var(--font-head);
+  font-size:1.05rem;
+  font-weight:1000;
+  letter-spacing:2px;
+  transform:skewX(-13deg);
+}
+
+.p3r-admin-toggle:hover{
+  background:
+    linear-gradient(110deg, var(--p3r-red) 0 28%, rgba(25,231,255,.22) 28% 42%, transparent 42% 100%),
+    var(--p3r-black);
+}
+
+/* ======================================================
+   NAV MENU
+   ====================================================== */
+
+.p3r-admin-collapse{
+  grid-column:1 / -1;
+}
+
+.p3r-admin-menu{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+
+/* FIX UTAMA ADA DI SINI:
+   Red slice dibuat background, bukan ::before overlay.
+*/
+.p3r-admin-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:.58rem 1rem .58rem 1.28rem;
+  color:rgba(255,255,255,.94);
+  background:
+    linear-gradient(110deg, var(--p3r-red) 0 16%, transparent 16% 100%),
+    rgba(0,0,0,.72);
+  border:3px solid rgba(255,255,255,.28);
+  box-shadow:7px 7px 0 rgba(0,0,0,.28);
+  text-decoration:none;
+  font-family:var(--font-head);
+  font-size:1.05rem;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transform:skewX(-13deg);
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  transition:filter .14s ease, transform .14s ease, background .14s ease, color .14s ease, border-color .14s ease;
+}
+
+/* pseudo lama dimatikan total biar tidak nutup tulisan */
+.p3r-admin-link::before,
+.p3r-admin-link::after{
+  display:none !important;
+  content:none !important;
+}
+
+.p3r-admin-link:hover,
+.p3r-admin-link.is-active{
+  color:var(--p3r-black);
+  background:
+    linear-gradient(110deg, var(--p3r-red) 0 24%, rgba(25,231,255,.35) 24% 38%, transparent 38% 100%),
+    var(--p3r-white);
+  border-color:var(--p3r-black);
+  transform:skewX(-13deg) translateY(-2px);
+  filter:brightness(1.04);
+}
+
+.p3r-admin-link-view{
+  color:var(--p3r-white);
+  background:
+    linear-gradient(110deg, var(--p3r-red) 0 16%, transparent 16% 100%),
+    var(--p3r-blue);
+  border-color:var(--p3r-white);
+}
+
+.p3r-admin-link-view:hover{
+  color:var(--p3r-black);
+  background:
+    linear-gradient(110deg, var(--p3r-red) 0 24%, rgba(25,231,255,.35) 24% 38%, transparent 38% 100%),
+    var(--p3r-white);
+  border-color:var(--p3r-black);
+}
+
+/* ======================================================
+   ADMIN USER
+   ====================================================== */
+
+.p3r-admin-user{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:14px;
+  padding:14px 16px;
+  color:rgba(255,255,255,.90);
+  background:rgba(0,0,0,.64);
+  border:3px solid rgba(255,255,255,.18);
+  box-shadow:10px 10px 0 rgba(0,0,0,.24);
+}
+
+.p3r-admin-user span{
+  display:block;
+  color:var(--p3r-cyan2);
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  line-height:1;
+}
+
+.p3r-admin-user strong{
+  display:block;
+  margin-top:4px;
+  font-weight:800;
+}
+
+/* ======================================================
+   MAIN SHELL
+   ====================================================== */
+
+.p3r-admin-main{
+  position:relative;
+  z-index:2;
+  padding:22px 0 64px;
+}
+
+.p3r-admin-shell{
+  position:relative;
+}
+
+.p3r-admin-watermark{
+  position:absolute;
+  right:-2vw;
+  top:0;
+  z-index:0;
+  color:rgba(255,255,255,.09);
+  font-family:var(--font-head);
+  font-size:clamp(4rem, 12vw, 13rem);
+  font-weight:1000;
+  line-height:.72;
+  letter-spacing:-.06em;
+  transform:rotate(-8deg);
+  pointer-events:none;
+}
+
+.p3r-admin-shell > *:not(.p3r-admin-watermark){
+  position:relative;
+  z-index:1;
+}
+
+/* ======================================================
+   EXISTING ADMIN CONTENT OVERRIDES
+   ====================================================== */
+
+.p3r-admin-main h1{
+  color:var(--p3r-white);
+  font-family:var(--font-head);
+  font-size:clamp(3rem, 6vw, 6rem);
+  font-weight:1000 !important;
+  letter-spacing:-.04em;
+  line-height:.74;
+  text-transform:uppercase;
+  text-shadow:
+    5px 5px 0 rgba(0,0,0,.92),
+    9px 9px 0 rgba(0,56,255,.62);
+  transform:skewX(-8deg);
+}
+
+.p3r-admin-main .container.py-4{
+  padding-top:1.2rem !important;
+}
+
+.p3r-admin-main .p3r-muted{
+  color:rgba(255,255,255,.74);
+}
+
+/* ======================================================
+   ADMIN PANELS
+   ====================================================== */
+
+.p3r-admin-page .p3r-panel{
+  color:var(--p3r-white);
+  background:rgba(0,0,0,.74);
+  border:3px solid rgba(255,255,255,.20);
+  box-shadow:16px 16px 0 rgba(0,0,0,.28);
+  padding:22px;
+  position:relative;
+  overflow:hidden;
+}
+
+.p3r-admin-page .p3r-panel::before{
+  content:"";
+  position:absolute;
+  left:-70px;
+  top:-70px;
+  width:190px;
+  height:190px;
+  background:var(--p3r-cyan);
+  transform:rotate(18deg);
+  opacity:.94;
+}
+
+.p3r-admin-page .p3r-panel::after{
+  content:"";
+  position:absolute;
+  right:-90px;
+  bottom:-100px;
+  width:260px;
+  height:210px;
+  background:rgba(0,56,255,.30);
+  transform:rotate(-16deg);
+}
+
+.p3r-admin-page .p3r-panel > *{
+  position:relative;
+  z-index:1;
+}
+
+.p3r-admin-page .p3r-panel-title{
+  color:var(--p3r-white);
+  font-family:var(--font-head);
+  font-size:1.42rem;
+  font-weight:1000;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:3px 3px 0 rgba(0,0,0,.82);
+}
+
+.p3r-admin-page .p3r-panel-title-dot{
+  width:24px;
+  height:14px;
+  border-radius:0;
+  background:var(--p3r-red);
+  clip-path:polygon(0 0, 100% 0, 72% 100%, 0 100%);
+}
+
+/* ======================================================
+   TABLES
+   ====================================================== */
+
+.p3r-admin-page .table-responsive{
+  border:3px solid rgba(255,255,255,.18);
+  box-shadow:10px 10px 0 rgba(0,0,0,.25);
+  background:rgba(0,0,0,.62);
+}
+
+.p3r-admin-page table.table{
+  margin:0;
+  --bs-table-bg:rgba(0,0,0,.62);
+  --bs-table-striped-bg:rgba(255,255,255,.055);
+  --bs-table-hover-bg:rgba(25,231,255,.10);
+  --bs-table-color:rgba(255,255,255,.92);
+  --bs-table-border-color:rgba(255,255,255,.12);
+}
+
+.p3r-admin-page table.table thead th{
+  color:var(--p3r-cyan2);
+  background:rgba(0,0,0,.78);
+  border-bottom:3px solid rgba(255,255,255,.20);
+  font-family:var(--font-head);
+  font-size:1.02rem;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.p3r-admin-page table.table td{
+  vertical-align:middle;
+}
+
+.p3r-admin-page table.table code{
+  color:var(--p3r-cyan2);
+  font-weight:800;
+}
+
+.p3r-admin-page table.table img{
+  transform:skewX(-8deg);
+  box-shadow:5px 5px 0 rgba(0,0,0,.35);
+}
+
+/* ======================================================
+   FORMS
+   ====================================================== */
+
+.p3r-admin-page label,
+.p3r-admin-page .form-label{
+  color:var(--p3r-cyan2);
+  font-family:var(--font-head);
+  font-weight:1000;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.p3r-admin-page .form-control,
+.p3r-admin-page .form-select,
+.p3r-admin-page textarea{
+  min-height:48px;
+  color:rgba(255,255,255,.94) !important;
+  background:rgba(0,0,0,.70) !important;
+  border:3px solid rgba(255,255,255,.22) !important;
+  border-radius:0 !important;
+  box-shadow:7px 7px 0 rgba(0,0,0,.24) !important;
+  font-weight:700;
+}
+
+.p3r-admin-page .form-control::placeholder,
+.p3r-admin-page textarea::placeholder{
+  color:rgba(255,255,255,.48) !important;
+}
+
+.p3r-admin-page .form-control:focus,
+.p3r-admin-page .form-select:focus,
+.p3r-admin-page textarea:focus{
+  border-color:var(--p3r-cyan) !important;
+  box-shadow:
+    7px 7px 0 rgba(0,0,0,.28),
+    0 0 0 .24rem rgba(25,231,255,.14) !important;
+}
+
+.p3r-admin-page .form-select{
+  color-scheme:dark;
+}
+
+.p3r-admin-page .form-select option{
+  color:rgba(255,255,255,.94);
+  background:#06124a;
+}
+
+/* ======================================================
+   ALERTS / CARD / MISC
+   ====================================================== */
+
+.p3r-admin-page .alert{
+  border-radius:0;
+  border:3px solid rgba(255,255,255,.28);
+  box-shadow:8px 8px 0 rgba(0,0,0,.24);
+  font-weight:800;
+}
+
+.p3r-admin-page .alert-success{
+  color:#001405;
+  background:rgba(57,255,20,.88);
+  border-color:rgba(255,255,255,.72);
+}
+
+.p3r-admin-page .alert-danger{
+  color:#fff;
+  background:rgba(255,21,59,.82);
+}
+
+.p3r-admin-page .text-muted{
+  color:rgba(255,255,255,.58) !important;
+}
+
+.p3r-admin-page .card{
+  color:var(--p3r-white);
+  background:rgba(0,0,0,.70);
+  border:3px solid rgba(255,255,255,.20);
+  border-radius:0;
+  box-shadow:12px 12px 0 rgba(0,0,0,.26);
+}
+
+/* ======================================================
+   ADMIN BUTTON SAFETY
+   ====================================================== */
+
+.p3r-admin-page .p3r-btn{
+  white-space:nowrap;
+}
+
+.p3r-admin-page td .p3r-btn{
+  min-height:38px;
+  padding:.44rem .78rem;
+  font-size:.95rem;
+  letter-spacing:1px;
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (min-width: 992px){
+  .p3r-admin-nav{
+    grid-template-columns:auto 1fr;
+    align-items:center;
+  }
+
+  .p3r-admin-toggle{
+    display:none;
+  }
+
+  .p3r-admin-collapse{
+    display:flex !important;
+    grid-column:auto;
+    justify-content:flex-end;
+    align-items:center;
+    gap:16px;
+  }
+
+  .p3r-admin-menu{
+    margin-top:0;
+  }
+
+  .p3r-admin-user{
+    margin-top:0;
+    padding:10px 12px;
+  }
+}
+
+@media (max-width: 991.98px){
+  .p3r-admin-brand{
+    width:100%;
+  }
+
+  .p3r-admin-collapse.show,
+  .p3r-admin-collapse.collapsing{
+    display:block;
+  }
+
+  .p3r-admin-menu{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .p3r-admin-link{
+    width:100%;
+  }
+}
+
+@media (max-width: 576px){
+  body.p3r-admin-page::before,
+  .p3r-admin-watermark{
+    display:none;
+  }
+
+  .p3r-admin-nav{
+    grid-template-columns:1fr;
+  }
+
+  .p3r-admin-toggle{
+    justify-self:stretch;
+  }
+
+  .p3r-admin-menu{
+    grid-template-columns:1fr;
+  }
+
+  .p3r-admin-user{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .p3r-admin-main h1{
+    font-size:clamp(2.8rem, 18vw, 4.4rem);
+  }
+
+  .p3r-admin-page .p3r-panel{
+    padding:18px;
+  }
+
+  .p3r-admin-page td .p3r-btn{
+    margin-top:4px;
+  }
+}
